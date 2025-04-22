@@ -12,14 +12,14 @@ def create_preprocessing_pipeline():
 
     # Define transformations for numerical features
     numerical_transformer = Pipeline(steps=[
-        ('imputer', SimpleImputer(strategy="mean")),  # Handle missing values
-        ('scaler', StandardScaler())                 # Scale numerical features
+        ('imputer', SimpleImputer(strategy="mean")),  
+        ('scaler', StandardScaler())                 
     ])
 
     # Define transformations for categorical features
     categorical_transformer = Pipeline(steps=[
-        ('imputer', SimpleImputer(strategy="most_frequent")),  # Handle missing values
-        ('onehot', OneHotEncoder(handle_unknown="ignore"))     # One-hot encode categorical features
+        ('imputer', SimpleImputer(strategy="most_frequent")), 
+        ('onehot', OneHotEncoder(handle_unknown="ignore"))     
     ])
 
     # Combine transformations into a ColumnTransformer
@@ -33,14 +33,14 @@ def create_preprocessing_pipeline():
     return preprocessor
 
 if __name__ == "__main__":
-    # Load your training dataset
+
     file_path = "../data/diamond_cleaned.csv"  
     df = pd.read_csv(file_path)
 
     # Separate features and target
-    X = df.drop(columns=['price'])  # Drop the 'price' column from the features
-    y = df['price']  # Assign the 'price' column as the target variable
-
+    X = df.drop(columns=['price']) 
+    y = df['price']  
+    
     # Create and fit the preprocessor
     preprocessor = create_preprocessing_pipeline()
 
